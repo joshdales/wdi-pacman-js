@@ -61,10 +61,9 @@ function displayStats() {
 function displayMenu() {
   console.log('\n\nSelect Option:\n');  // each \n creates a new line
   console.log('(d) Eat Dot');
-  console.log('(1) Eat Inky');
-  console.log('(2) Eat Blinky');
-  console.log('(3) Eat Pinky');
-  console.log('(4) Eat Clyde');
+  ghosts.forEach(function(ghost){
+    console.log('(' + ghost.menuOption + ') Eat ' + ghost.name);
+  })
   console.log('(q) Quit');
 }
 
@@ -82,7 +81,7 @@ function eatDot() {
 
 // Eating the ghosts
 function eatGhost(ghost) {
-  if !(ghost.edible){
+  if (!ghost.edible){
     console.log('\n Pac-Man was killed by the ' + ghost.colour + ' ghost, ' + ghost.name);
     lives -= 1;
   }
