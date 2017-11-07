@@ -81,6 +81,15 @@ function eatDot() {
   score += 10;
 }
 
+function eatPowerPellet() {
+  console.log('\nChomp!');
+  score += 50;
+  ghosts.forEach(function(ghost) {
+    ghost.edible = true;
+  })
+  powerPellets -= 1;
+}
+
 // Eating the ghosts
 function eatGhost(ghost) {
   if (!ghost.edible){
@@ -107,6 +116,9 @@ function processInput(key) {
       break;
     case 'd':
       eatDot();
+      break;
+      case 'p':
+      eatPowerPellet();
       break;
     default:
       console.log('\nInvalid Command!');
