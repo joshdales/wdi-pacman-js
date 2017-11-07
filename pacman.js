@@ -80,6 +80,14 @@ function eatDot() {
   score += 10;
 }
 
+// Eating the ghosts
+function eatGhost(ghost) {
+  if !(ghost.edible){
+    console.log('\n Pac-Man was killed by the ' + ghost.colour + ' ghost, ' + ghost.name);
+    lives -= 1;
+  }
+}
+
 
 // Process Player's Input
 function processInput(key) {
