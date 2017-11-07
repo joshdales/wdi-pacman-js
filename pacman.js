@@ -28,14 +28,16 @@ var pinky = {
   'edible': false
 };
 
-var Clyde = {
+var clyde = {
   'menuOption': 4,
   'name': 'Clyde',
   'colour': 'Orange',
   'character': 'Pokey',
   'edible': false
 };
+
 // replace this comment with your four ghosts setup as objects
+var ghosts = [inky, blinky, pinky, clyde];
 
 
 // Draw the screen functionality
