@@ -3,6 +3,7 @@ var score = 0;
 var lives = 2;
 var powerPellets = 4;
 var dots = 240;
+var ghostsEaten = 0;
 
 // Define your ghosts here
 var inky = {
@@ -132,7 +133,15 @@ function eatPowerPellet() {
 function eatGhost(ghost) {
   if (ghost.edible){
     console.log('\nPac-Man ate the ' + ghost.character + ' ghost, ' + ghost.name);
-    score += 200;
+    if (ghostsEaten === 0) {
+      score += 200;
+    } else if (ghostsEaten === 2) {
+      score += 400;
+    } else if (ghostsEaten === 3) {
+      score += 800;
+    } else if (ghostsEaten >= 4) {
+      score += 1600;
+    }
     ghost.edible = false
   } else {
     console.log('\nPac-Man was killed by the ' + ghost.colour + ' ghost, ' + ghost.name);
