@@ -93,8 +93,12 @@ function eatPowerPellet() {
 
 // Eating the ghosts
 function eatGhost(ghost) {
-  if (!ghost.edible){
-    console.log('\n Pac-Man was killed by the ' + ghost.colour + ' ghost, ' + ghost.name);
+  if (ghost.edible){
+    console.log('\nPac-Man ate the ' + ghost.character + ' ghost, ' + ghost.name);
+    score += 200;
+    ghost.edible = false
+  } else {
+    console.log('\nPac-Man was killed by the ' + ghost.colour + ' ghost, ' + ghost.name);
     lives -= 1;
     gameOver();
   }
