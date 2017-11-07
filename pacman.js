@@ -104,7 +104,7 @@ function eat100Dots() {
   dots -= 100;
 }
 
-function eatremainingDots() {
+function eatRemainingDots() {
   console.log('\nChomp! Chomp! Chomp! Chomp! Chomp! Chomp! Chomp! Chomp! Chomp!')
   var remaingDots = dots;
   score += (dots * 10);
@@ -150,6 +150,23 @@ function processInput(key) {
       break;
     case 'd':
       eatDot();
+      break;
+    case 'f':
+      if (dots >= 10) {
+      eat10Dots();
+    } else {
+      console.log('\nThere arent that many dots left');
+    }
+      break;
+    case 'g':
+      if (dots >= 100) {
+      eat100Dots();
+    } else {
+      console.log('\nThere arent that many dots left');
+    }
+      break;
+    case 'h':
+      eatRemainingDots();
       break;
     case 'p':
       if (powerPellets > 0) {
