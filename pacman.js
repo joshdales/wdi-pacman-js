@@ -93,9 +93,22 @@ function eatDot() {
 }
 
 function eat10Dots() {
-  console.log('\nChomp! Chomp! Chomp!');
+  console.log('\nChomp! Chomp!');
   score += 100;
   dots -= 10;
+}
+
+function eat100Dots() {
+  console.log('\nChomp! Chomp! Chomp! Chomp!')
+  score += 1000;
+  dots -= 100;
+}
+
+function eatremainingDots() {
+  console.log('\nChomp! Chomp! Chomp! Chomp! Chomp! Chomp! Chomp! Chomp! Chomp!')
+  var remaingDots = dots;
+  score += (dots * 10);
+  dots = 0;
 }
 
 function eatPowerPellet() {
