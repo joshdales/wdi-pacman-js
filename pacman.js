@@ -29,7 +29,7 @@ var pinky = {
 };
 
 var Clyde = {
-  'menuOption' = 4,
+  'menuOption': 4,
   'name': 'Clyde',
   'colour': 'Orange',
   'character': 'Pokey',
