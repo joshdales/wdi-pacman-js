@@ -2,6 +2,7 @@
 var score = 0;
 var lives = 2;
 var powerPellets = 4;
+var dots = 240;
 
 // Define your ghosts here
 var inky = {
@@ -88,6 +89,13 @@ function displayPrompt() {
 function eatDot() {
   console.log('\nChomp!');
   score += 10;
+  dots -= 1;
+}
+
+function eat10Dots() {
+  console.log('\nChomp! Chomp! Chomp!');
+  score += 100;
+  dots -= 10;
 }
 
 function eatPowerPellet() {
