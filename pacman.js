@@ -39,6 +39,14 @@ var clyde = {
 // replace this comment with your four ghosts setup as objects
 var ghosts = [inky, blinky, pinky, clyde];
 
+function edibility(ghost){
+  if (ghost.edible === true){
+    return 'edible';
+  } else {
+    return 'inedible';
+  }
+}
+
 
 // Draw the screen functionality
 function drawScreen() {
@@ -65,7 +73,7 @@ function displayMenu() {
     console.log('(p) Eat Power-Pellet');
   }
   ghosts.forEach(function(ghost){
-    console.log('(' + ghost.menuOption + ') Eat ' + ghost.name);
+    console.log('(' + ghost.menuOption + ') Eat ' + ghost.name + ' (' + edibility(ghost) + ')');
   })
   console.log('(q) Quit');
 }
