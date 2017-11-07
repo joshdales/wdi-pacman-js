@@ -130,12 +130,24 @@ function processInput(key) {
     case 'd':
       eatDot();
       break;
-      case 'p':
+    case 'p':
       if (powerPellets > 0) {
         eatPowerPellet();
       } else {
         console.log('\nThere are no Power-Pellets left!');
       }
+      break;
+    case '1':
+      eatGhost(inky)
+      break;
+    case '2':
+      eatGhost(blinky)
+      break;
+    case '3':
+      eatGhost(pinky)
+      break;
+    case '4':
+      eatGhost(clyde)
       break;
     default:
       console.log('\nInvalid Command!');
