@@ -84,6 +84,14 @@ function eatGhost(ghost) {
   if (!ghost.edible){
     console.log('\n Pac-Man was killed by the ' + ghost.colour + ' ghost, ' + ghost.name);
     lives -= 1;
+    gameOver();
+  }
+}
+
+// check for Game Over
+function gameOver() {
+  if (lives < 0) {
+    process.exit();
   }
 }
 
