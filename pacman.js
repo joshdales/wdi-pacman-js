@@ -74,12 +74,12 @@ function displayMenu() {
   console.log('\n\nSelect Option:\n');  // each \n creates a new line
   console.log('(d) Eat Dot');
   if (dots > 10) {
-    console.log('(f) Eat 10 Dots');
+    console.log('(x) Eat 10 Dots');
   }
   if (dots > 100) {
-    console.log('(g) Eat 100 Dots');
+    console.log('(c) Eat 100 Dots');
   }
-  console.log('(h) Eat Remaing Dots');
+  console.log('(v) Eat Remaing Dots');
 
   if (powerPellets > 0){
     console.log('(p) Eat Power-Pellet');
@@ -177,7 +177,7 @@ function levelComplete() {
 }
 
 function gameComplete () {
-  if level >= 256 {
+  if level > 256 {
     console.log("Congrats you have compeleted the game!");
     gameOver();
   }
@@ -194,21 +194,21 @@ function processInput(key) {
     case 'd':
       eatDot();
       break;
-    case 'f':
+    case 'x':
       if (dots >= 10) {
       eat10Dots();
     } else {
       console.log('\nThere arent that many dots left');
     }
       break;
-    case 'g':
+    case 'c':
       if (dots >= 100) {
       eat100Dots();
     } else {
       console.log('\nThere arent that many dots left');
     }
       break;
-    case 'h':
+    case 'v':
       eatRemainingDots();
       break;
     case 'p':
