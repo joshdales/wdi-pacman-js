@@ -166,12 +166,20 @@ function gameOver() {
 // check for level completion
 function levelComplete() {
   if (dots === 0 && powerPellets === 0){
+    gameComplete();
     dots = 240;
     powerPellets = 4;
     level += 1;
     ghosts.forEach(function(ghost) {
       ghost.edible = false;
     })
+  }
+}
+
+function gameComplete () {
+  if level >= 256 {
+    console.log("Congrats you have compeleted the game!");
+    gameOver();
   }
 }
 
