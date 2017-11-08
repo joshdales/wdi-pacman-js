@@ -8,38 +8,43 @@ var ghostsEaten = 0;
 var level = 1;
 
 // Define fruits
-var cherry = {
-  'name': 'Cherry',
-  'score': 100
-}
-var  strawberry = {
-  'name': 'Strawberry',
-  'score': 300
-}
-var  orange = {
-  'name': 'Orange',
-  'score': 500
-}
-var  apple = {
-  'name': 'Apple',
-  'score': 700
-}
-var  pineapple = {
-  'name': 'Pineapple',
-  'score': 1000
-}
-var  galaxianSpaceship = {
-  'name': 'Galaxian Spaceship',
-  'score': 2000
-}
-var  bell = {
-  'name': 'Bell',
-  'score': 3000
-}
-var  key = {
-  'name': 'Key',
-  'score': 5000
-}
+if (level === 1) {
+  var fruit = {
+    'name': 'Cherry',
+    'score': 100}
+} else if (level === 2) {
+  var fruit = {
+    'name': 'Strawberry',
+    'score': 300}
+} else if (level === 3 || level === 4) {
+  var fruit = {
+    'name': 'Orange',
+    'score': 500}
+} else if (level === 5 || level === 6) {
+  var fruit = {
+    'name': 'Apple',
+    'score': 700}
+} else if (level === 7 || level === 8) {
+  var  fruit = {
+    'name': 'Pineapple',
+    'score': 1000
+  }
+} else if (level === 9 || level === 10) {
+  var  fruit = {
+    'name': 'Galaxian Spaceship',
+    'score': 2000
+  }
+} else if (level === 11 || level === 12) {
+  var  fruit = {
+    'name': 'Bell',
+    'score': 3000
+  }
+} else if (level > 12) {
+  var  fruit = {
+    'name': 'Key',
+    'score': 5000
+  }
+};
 
 // Define your ghosts here
 var inky = {
@@ -107,6 +112,7 @@ function displayStats() {
 function displayMenu() {
   console.log('\n\nSelect Option:\n');  // each \n creates a new line
   console.log('(d) Eat Dot');
+  console.log('(f) Eat ' + fruit.name);
   if (dots > 10) {
     console.log('(x) Eat 10 Dots');
   }
@@ -170,10 +176,7 @@ function eatPowerPellet() {
 
 function eatFruit() {
   console.log('\nChomp!');
-  if (level === 1) {
-    var fruit = cherry;
     score += fruit.score;
-  }
 }
 
 // Eating the ghosts
@@ -218,7 +221,7 @@ function levelComplete() {
 }
 
 function gameComplete () {
-  if level > 256 {
+  if (level > 256) {
     console.log("Congrats you have compeleted the game!");
     gameOver();
   }
