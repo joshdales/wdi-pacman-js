@@ -1,9 +1,11 @@
+'use strick';
 // Setup initial game stats
 var score = 0;
 var lives = 2;
 var powerPellets = 4;
 var dots = 240;
 var ghostsEaten = 0;
+var level = 1;
 
 // Define your ghosts here
 var inky = {
@@ -65,7 +67,7 @@ function clearScreen() {
 }
 
 function displayStats() {
-  console.log('Score: ' + score + '     Lives: ' + lives + '\n\nPower-Pellets: ' + powerPellets);
+  console.log('Score: ' + score + '     Lives: ' + lives + '\nPower-Pellets: ' + powerPellets + '\n\nLevel: ' + level);
 }
 
 function displayMenu() {
@@ -99,25 +101,28 @@ function eatDot() {
   console.log('\nChomp!');
   score += 10;
   dots -= 1;
+  levelComplete();
 }
 
 function eat10Dots() {
   console.log('\nChomp! Chomp!');
   score += 100;
   dots -= 10;
+  levelComplete();
 }
 
 function eat100Dots() {
   console.log('\nChomp! Chomp! Chomp! Chomp!')
   score += 1000;
   dots -= 100;
+  levelComplete();
 }
 
 function eatRemainingDots() {
   console.log('\nChomp! Chomp! Chomp! Chomp! Chomp! Chomp! Chomp! Chomp! Chomp!')
-  var remaingDots = dots;
   score += (dots * 10);
   dots = 0;
+  levelComplete();
 }
 
 function eatPowerPellet() {
@@ -127,6 +132,7 @@ function eatPowerPellet() {
     ghost.edible = true;
   })
   powerPellets -= 1;
+  levelComplete();
 }
 
 // Eating the ghosts
@@ -154,6 +160,18 @@ function eatGhost(ghost) {
 function gameOver() {
   if (lives < 0) {
     process.exit();
+  }
+}
+
+// check for level completion
+function levelComplete() {
+  if (dots === 0 && powerPellets === 0){
+    dots = 240;
+    powerPellets = 4;
+    level += 1;
+    ghosts.forEach(function(ghost) {
+      ghost.edible = false;
+    })
   }
 }
 
