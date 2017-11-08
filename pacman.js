@@ -7,6 +7,40 @@ var dots = 240;
 var ghostsEaten = 0;
 var level = 1;
 
+// Define fruits
+var cherry = {
+  'name': 'Cherry',
+  'score': 100
+}
+var  strawberry = {
+  'name': 'Strawberry',
+  'score': 300
+}
+var  orange = {
+  'name': 'Orange',
+  'score': 500
+}
+var  apple = {
+  'name': 'Apple',
+  'score': 700
+}
+var  pineapple = {
+  'name': 'Pineapple',
+  'score': 1000
+}
+var  galaxianSpaceship = {
+  'name': 'Galaxian Spaceship',
+  'score': 2000
+}
+var  bell = {
+  'name': 'Bell',
+  'score': 3000
+}
+var  key = {
+  'name': 'Key',
+  'score': 5000
+}
+
 // Define your ghosts here
 var inky = {
   'menuOption': 1,
@@ -80,7 +114,6 @@ function displayMenu() {
     console.log('(c) Eat 100 Dots');
   }
   console.log('(v) Eat Remaing Dots');
-
   if (powerPellets > 0){
     console.log('(p) Eat Power-Pellet');
   }
@@ -133,6 +166,14 @@ function eatPowerPellet() {
   })
   powerPellets -= 1;
   levelComplete();
+}
+
+function eatFruit() {
+  console.log('\nChomp!');
+  if (level === 1) {
+    var fruit = cherry;
+    score += fruit.score;
+  }
 }
 
 // Eating the ghosts
