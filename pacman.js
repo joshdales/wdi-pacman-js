@@ -11,38 +11,46 @@ var level = 1;
 if (level === 1) {
   var fruit = {
     'name': 'Cherry',
-    'score': 100}
+    'score': 100,
+    'eaten': false}
 } else if (level === 2) {
   var fruit = {
     'name': 'Strawberry',
-    'score': 300}
+    'score': 300,
+    'eaten': false}
 } else if (level === 3 || level === 4) {
   var fruit = {
     'name': 'Orange',
-    'score': 500}
+    'score': 500,
+    'eaten': false}
 } else if (level === 5 || level === 6) {
   var fruit = {
     'name': 'Apple',
-    'score': 700}
+    'score': 700,
+    'eaten': false}
 } else if (level === 7 || level === 8) {
-  var  fruit = {
+  var fruit = {
     'name': 'Pineapple',
-    'score': 1000
+    'score': 1000,
+    'eaten': false
   }
 } else if (level === 9 || level === 10) {
-  var  fruit = {
+  var fruit = {
     'name': 'Galaxian Spaceship',
-    'score': 2000
+    'score': 2000,
+    'eaten': false
   }
 } else if (level === 11 || level === 12) {
-  var  fruit = {
+  var fruit = {
     'name': 'Bell',
-    'score': 3000
+    'score': 3000,
+    'eaten': false
   }
 } else if (level > 12) {
-  var  fruit = {
+  var fruit = {
     'name': 'Key',
-    'score': 5000
+    'score': 5000,
+    'eaten': false
   }
 };
 
@@ -112,7 +120,9 @@ function displayStats() {
 function displayMenu() {
   console.log('\n\nSelect Option:\n');  // each \n creates a new line
   console.log('(d) Eat Dot');
-  console.log('(f) Eat ' + fruit.name);
+  if (fruit.eaten === false) {
+    console.log('(f) Eat ' + fruit.name);
+  }
   if (dots > 10) {
     console.log('(x) Eat 10 Dots');
   }
@@ -176,7 +186,8 @@ function eatPowerPellet() {
 
 function eatFruit() {
   console.log('\nChomp!');
-    score += fruit.score;
+  score += fruit.score;
+  fruit.eaten = true;
 }
 
 // Eating the ghosts
@@ -237,6 +248,13 @@ function processInput(key) {
       break;
     case 'd':
       eatDot();
+      break;
+    case 'f':
+      if (fruit.eaten === false) {
+        eatFruit();
+      } else {
+        console.log('Fruit already eaten');
+      }
       break;
     case 'x':
       if (dots >= 10) {
