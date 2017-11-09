@@ -127,7 +127,7 @@ function displayMenu() {
     console.log('(c) Eat 100 Dots');
   }
   console.log('(v) Eat Remaing Dots');
-  if (powerPellets > 0){
+  if (powerPellets > 0 && eatingPellets()){
     console.log('(p) Eat Power-Pellet');
   }
   ghosts.forEach(function(ghost){
