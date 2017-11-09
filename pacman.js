@@ -192,6 +192,7 @@ function eatRemainingDots() {
 }
 
 function eatPowerPellet() {
+  if (eatingPellets()) {
   console.log('\nChomp!');
   score += 50;
   ghosts.forEach(function(ghost) {
@@ -199,6 +200,14 @@ function eatPowerPellet() {
   })
   powerPellets -= 1;
   levelComplete();
+}};
+
+function checkEditble(ghost) {
+  return ghost.edible === false;
+}
+
+function eatingPellets() {
+ return ghosts.every(checkEditble);
 }
 
 function eatFruit() {
