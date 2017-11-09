@@ -7,56 +7,48 @@ var dots = 240;
 var ghostsEaten = 0;
 var level = 1;
 var random = randomNum(1, dots);
+var fruit = {
+  'name': 'Cherry',
+  'score': 100,
+  'eaten': true,
+  'disable': false
+}
 
 // Define fruits
-if (level === 1) {
-  var fruit = {
-    'name': 'Cherry',
-    'score': 100,
-    'eaten': true,
-    'disable': false}
-} else if (level === 2) {
-  var fruit = {
+function defineFruit(level) {
+  var fruit;
+  if (level === 2) {
+    fruit = {
     'name': 'Strawberry',
-    'score': 300,
-    'eaten': true,
-    'disable': false}
-} else if (level === 3 || level === 4) {
-  var fruit = {
+    'score': 300,}
+  } else if (level === 3 || level === 4) {
+    fruit = {
     'name': 'Orange',
-    'score': 500,
-    'eaten': true,
-    'disable': false}
-} else if (level === 5 || level === 6) {
-  var fruit = {
+    'score': 500,}
+  } else if (level === 5 || level === 6) {
+    fruit = {
     'name': 'Apple',
-    'score': 700,
-    'eaten': true,
-    'disable': false}
-} else if (level === 7 || level === 8) {
-  var fruit = {
-    'name': 'Pineapple',
-    'score': 1000,
-    'eaten': true,
-    'disable': false}
-} else if (level === 9 || level === 10) {
-  var fruit = {
-    'name': 'Galaxian Spaceship',
-    'score': 2000,
-    'eaten': true,
-    'disable': false}
-} else if (level === 11 || level === 12) {
-  var fruit = {
-    'name': 'Bell',
-    'score': 3000,
-    'eaten': true,
-    'disable': false}
-} else if (level > 12) {
-  var fruit = {
-    'name': 'Key',
-    'score': 5000,
-    'eaten': true,
-    'disable': false}
+    'score': 700,}
+  } else if (level === 7 || level === 8) {
+      fruit = {
+      'name': 'Pineapple',
+      'score': 1000,}
+  } else if (level === 9 || level === 10) {
+      fruit = {
+      'name': 'Galaxian Spaceship',
+      'score': 2000,}
+  } else if (level === 11 || level === 12) {
+      fruit = {
+      'name': 'Bell',
+      'score': 3000,}
+  } else if (level > 12) {
+      fruit = {
+      'name': 'Key',
+      'score': 5000,}
+  }
+  fruit.eaten = true;
+  fruit.disable = false;
+  return fruit
 };
 
 // Define your ghosts here
@@ -246,14 +238,14 @@ function gameOver() {
 
 // check for level completion
 function levelComplete() {
+  console.log(fruit);
   if (dots === 0 && powerPellets === 0){
     gameComplete();
     dots = 240;
     powerPellets = 4;
     level += 1;
     random = randomNum(10, dots);
-    fruit.eaten = true;
-    fruit.disable = false;
+    fruit = defineFruit(level);
     ghosts.forEach(function(ghost) {
       ghost.edible = false;
     })
