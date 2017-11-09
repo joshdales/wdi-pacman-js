@@ -1,4 +1,4 @@
-'use strick';
+'use strict';
 // Setup initial game stats
 var score = 0;
 var lives = 2;
@@ -6,52 +6,57 @@ var powerPellets = 4;
 var dots = 240;
 var ghostsEaten = 0;
 var level = 1;
+var random = randomNum(1, dots);
 
 // Define fruits
 if (level === 1) {
   var fruit = {
     'name': 'Cherry',
     'score': 100,
-    'eaten': false}
+    'eaten': true,
+    'disable': false}
 } else if (level === 2) {
   var fruit = {
     'name': 'Strawberry',
     'score': 300,
-    'eaten': false}
+    'eaten': true,
+    'disable': false}
 } else if (level === 3 || level === 4) {
   var fruit = {
     'name': 'Orange',
     'score': 500,
-    'eaten': false}
+    'eaten': true,
+    'disable': false}
 } else if (level === 5 || level === 6) {
   var fruit = {
     'name': 'Apple',
     'score': 700,
-    'eaten': false}
+    'eaten': true,
+    'disable': false}
 } else if (level === 7 || level === 8) {
   var fruit = {
     'name': 'Pineapple',
     'score': 1000,
-    'eaten': false
-  }
+    'eaten': true,
+    'disable': false}
 } else if (level === 9 || level === 10) {
   var fruit = {
     'name': 'Galaxian Spaceship',
     'score': 2000,
-    'eaten': false
-  }
+    'eaten': true,
+    'disable': false}
 } else if (level === 11 || level === 12) {
   var fruit = {
     'name': 'Bell',
     'score': 3000,
-    'eaten': false
-  }
+    'eaten': true,
+    'disable': false}
 } else if (level > 12) {
   var fruit = {
     'name': 'Key',
     'score': 5000,
-    'eaten': false
-  }
+    'eaten': true,
+    'disable': false}
 };
 
 // Define your ghosts here
@@ -120,7 +125,7 @@ function displayStats() {
 function displayMenu() {
   console.log('\n\nSelect Option:\n');  // each \n creates a new line
   console.log('(d) Eat Dot');
-  if (fruit.eaten === false) {
+  if (fruit.eaten === false && fruit.disable === false) {
     console.log('(f) Eat ' + fruit.name);
   }
   if (dots > 10) {
@@ -144,34 +149,54 @@ function displayPrompt() {
   process.stdout.write('\nWaka Waka :v '); // :v is the Pac-Man emoji.
 }
 
-
 // Menu Options
+function randomNum(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
+function resetFruit(numDots, randomNum) {
+  if (numDots < randomNum) {
+    return fruit.eaten = false;
+}};
+
 function eatDot() {
+  if (dots > 0) {
   console.log('\nChomp!');
   score += 10;
   dots -= 1;
+  resetFruit(dots, random);
   levelComplete();
+  }
 }
 
 function eat10Dots() {
+  if (dots > 0) {
   console.log('\nChomp! Chomp!');
   score += 100;
   dots -= 10;
+  resetFruit(dots, random);
   levelComplete();
+  }
 }
 
 function eat100Dots() {
+  if (dots > 0) {
   console.log('\nChomp! Chomp! Chomp! Chomp!')
   score += 1000;
   dots -= 100;
+  resetFruit(dots, random);
   levelComplete();
+  }
 }
 
 function eatRemainingDots() {
+  if (dots > 0) {
   console.log('\nChomp! Chomp! Chomp! Chomp! Chomp! Chomp! Chomp! Chomp! Chomp!')
   score += (dots * 10);
   dots = 0;
+  resetFruit(dots, random);
   levelComplete();
+  }
 }
 
 function eatPowerPellet() {
@@ -188,6 +213,7 @@ function eatFruit() {
   console.log('\nChomp!');
   score += fruit.score;
   fruit.eaten = true;
+  fruit.disable = true;
 }
 
 // Eating the ghosts
@@ -225,6 +251,9 @@ function levelComplete() {
     dots = 240;
     powerPellets = 4;
     level += 1;
+    random = randomNum(10, dots);
+    fruit.eaten = true;
+    fruit.disable = false;
     ghosts.forEach(function(ghost) {
       ghost.edible = false;
     })
@@ -238,7 +267,6 @@ function gameComplete () {
   }
 }
 
-
 // Process Player's Input
 function processInput(key) {
   switch(key) {
@@ -248,26 +276,27 @@ function processInput(key) {
       break;
     case 'd':
       eatDot();
+      resetFruit(dots, random);
       break;
     case 'f':
-      if (fruit.eaten === false) {
+      if (fruit.eaten === false && fruit.disable === false) {
         eatFruit();
       } else {
-        console.log('Fruit already eaten');
+        console.log(fruit.name + ' already eaten!');
       }
       break;
     case 'x':
       if (dots >= 10) {
       eat10Dots();
     } else {
-      console.log('\nThere arent that many dots left');
+      console.log('\nThere arent that many dots left!');
     }
       break;
     case 'c':
       if (dots >= 100) {
       eat100Dots();
     } else {
-      console.log('\nThere arent that many dots left');
+      console.log('\nThere arent that many dots left!');
     }
       break;
     case 'v':
