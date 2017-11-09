@@ -197,6 +197,9 @@ function eatPowerPellet() {
   score += 50;
   ghosts.forEach(function(ghost) {
     ghost.edible = true;
+    setTimeout(function() {
+      ghost.edible = false
+    }, 10000);
   })
   powerPellets -= 1;
   levelComplete();
