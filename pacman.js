@@ -244,9 +244,22 @@ function eatGhost(ghost) {
 // check for Game Over
 function gameOver() {
   if (lives < 0) {
+    saveScore();
     process.exit();
   }
 }
+
+function saveScore(){
+  const fs = require('fs');
+  fs.writeFile(score+".score", "okwedone", (err) => {
+    // throws an error, you could also catch it here
+    console.log('data saved!');
+    if (err) throw err;
+
+    // success case, the file was saved
+});
+};
+
 
 // check for level completion
 function levelComplete() {
@@ -271,11 +284,13 @@ function gameComplete () {
   }
 }
 
+
 // Process Player's Input
 function processInput(key) {
   switch(key) {
     case '\u0003': // This makes it so CTRL-C will quit the program
     case 'q':
+
       process.exit();
       break;
     case 'd':
